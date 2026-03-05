@@ -35,4 +35,11 @@ export class DatosLibros {
     });
     //devuelve un observable
   }
+
+  public deleteLibro(id: any): Observable<HttpResponse<any>> {
+    return this.http.delete<any>(environment.apiUrl + `api/libro/${id}`, {
+      observe: 'response',
+    });
+    //devuelve un observable
+  }
 }

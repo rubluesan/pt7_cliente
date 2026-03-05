@@ -1,4 +1,9 @@
 <div class="panel panel-primary">
+  @if (message()) {
+  <div class="toast-notification success" animate.enter="enter-animation">
+    <span>{{ message() }}</span>
+  </div>
+  }
   <div class="panel-heading">
     {{ tituloListado() }}
   </div>
@@ -26,7 +31,7 @@
           <td>{{ libro.ventas }}</td>
           <td>{{ libro.autor.nombre }}</td>
           <td><button class="btn btn-success" [routerLink]="['/libro-edit', libro.id]">Editar</button></td>
-          <td><button class=" btn btn-danger">Eliminar</button></td>
+          <td><button class=" btn btn-danger" (click)="eliminarLibro(libro.id)">Eliminar</button></td>
         </tr>
         }
       </tbody>
