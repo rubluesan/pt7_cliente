@@ -1,9 +1,9 @@
-import { IAutor } from "./iautor";
+import { IAutor } from './iautor';
 
 export interface ILibro {
-    id: number,
-    titulo: string,
-    fechaP: string,
-    ventas: number,
-    autor: IAutor
+  id: number;
+  titulo: string;
+  fechaP: string;
+  ventas: number;
+  autor: IAutor;
 }

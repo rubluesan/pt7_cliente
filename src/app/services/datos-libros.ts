@@ -15,8 +15,22 @@ export class DatosLibros {
     });
     //devuelve un observable
   }
-  public createLibro(datos: any): Observable<HttpResponse<ILibro[]>> {
-    return this.http.post<ILibro[]>(environment.apiUrl + 'api/libro', datos, {
+  public createLibro(datos: any): Observable<HttpResponse<ILibro>> {
+    return this.http.post<ILibro>(environment.apiUrl + 'api/libro', datos, {
+      observe: 'response',
+    });
+    //devuelve un observable
+  }
+
+  public getLibro(id: any): Observable<HttpResponse<ILibro>> {
+    return this.http.get<ILibro>(environment.apiUrl + `api/libro/${id}`, {
+      observe: 'response',
+    });
+    //devuelve un observable
+  }
+
+  public editLibro(id: any, datos: any): Observable<HttpResponse<ILibro>> {
+    return this.http.put<ILibro>(environment.apiUrl + `api/libro/${id}`, datos, {
       observe: 'response',
     });
     //devuelve un observable
