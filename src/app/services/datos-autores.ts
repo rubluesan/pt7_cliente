@@ -21,4 +21,25 @@ export class DatosAutores {
     });
     //devuelve un observable
   }
+
+  public getAutor(id: any): Observable<HttpResponse<IAutor>> {
+    return this.http.get<IAutor>(environment.apiUrl + `api/autor/${id}`, {
+      observe: 'response',
+    });
+    //devuelve un observable
+  }
+
+  public editAutor(id: any, datos: any): Observable<HttpResponse<IAutor>> {
+    return this.http.put<IAutor>(environment.apiUrl + `api/autor/${id}`, datos, {
+      observe: 'response',
+    });
+    //devuelve un observable
+  }
+
+  public deleteAutor(id: any): Observable<HttpResponse<any>> {
+    return this.http.delete<any>(environment.apiUrl + `api/autor/${id}`, {
+      observe: 'response',
+    });
+    //devuelve un observable
+  }
 }
