@@ -21,6 +21,7 @@ export class AutorCreate {
   myForm: FormGroup = this.formBuilder.group({
     nombre: [null],
     apellidos: [null],
+    imagen: [null],
   });
   // ngOnInit(): void {
   //   this.autorService.getDatos().subscribe({
@@ -35,8 +36,23 @@ export class AutorCreate {
   //   });
   // }
 
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.myForm.patchValue({ imagen: file });
+    }
+  }
+
   onSubmit(autor: any) {
-    this.autorService.createAutor(autor).subscribe({
+    const autorFormData = new FormData();
+
+    autorFormData.append('nombre', autor.nombre);
+    autorFormData.append('apellidos', autor.apellidos);
+    if (autor.apellidos) {
+      autorFormData.append('imagen', autor.imagen);
+    }
+
+    this.autorService.createAutor(autorFormData).subscribe({
       next: (data) => {
         // navegamos a la ruta libro-list
         this.router.navigateByUrl('/autor-list');

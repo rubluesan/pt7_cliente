@@ -3,6 +3,7 @@ import { IAutor } from '../interfaces/iautor';
 import { DatosAutores } from '../services/datos-autores';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-autor-list',

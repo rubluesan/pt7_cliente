@@ -23,19 +23,10 @@ export class AutorEdit {
   myForm: FormGroup = this.formBuilder.group({
     nombre: [null],
     apellidos: [null],
+    imagen: [null],
   });
 
   ngOnInit(): void {
-    this.autorService.getDatos().subscribe({
-      next: (data) => {
-        this.autores.set(data.body);
-      },
-      error: (error) => {
-        // interpolamos a la vista error.message
-        this.errorMessage.set(error.message);
-      },
-    });
-
     this.id = this.ruta.snapshot.params['id'];
     this.autorService.getAutor(this.id).subscribe({
       next: (data) => {
@@ -43,6 +34,7 @@ export class AutorEdit {
         this.myForm.setValue({
           nombre: data.body?.nombre,
           apellidos: data.body?.apellidos,
+          imagen: null,
         });
       },
       error: (error) => {
@@ -51,8 +43,23 @@ export class AutorEdit {
     });
   }
 
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.myForm.patchValue({ imagen: file });
+    }
+  }
+
   onSubmit(autor: any) {
-    this.autorService.editAutor(this.id, autor).subscribe({
+    const autorFormData = new FormData();
+
+    autorFormData.append('nombre', autor.nombre);
+    autorFormData.append('apellidos', autor.apellidos);
+    if (autor.apellidos) {
+      autorFormData.append('imagen', autor.imagen);
+    }
+
+    this.autorService.editAutor(this.id, autorFormData).subscribe({
       next: (data) => {
         // navegamos a la ruta libro-list
         this.router.navigateByUrl('/autor-list');

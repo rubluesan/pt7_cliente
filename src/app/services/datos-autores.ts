@@ -15,8 +15,8 @@ export class DatosAutores {
     });
     //devuelve un observable
   }
-  public createAutor(datos: any): Observable<HttpResponse<IAutor[]>> {
-    return this.http.post<IAutor[]>(environment.apiUrl + 'api/autor', datos, {
+  public createAutor(datos: any): Observable<HttpResponse<any>> {
+    return this.http.post<any>(environment.apiUrl + 'api/autor', datos, {
       observe: 'response',
     });
     //devuelve un observable
@@ -29,8 +29,8 @@ export class DatosAutores {
     //devuelve un observable
   }
 
-  public editAutor(id: any, datos: any): Observable<HttpResponse<IAutor>> {
-    return this.http.put<IAutor>(environment.apiUrl + `api/autor/${id}`, datos, {
+  public editAutor(id: any, datos: any): Observable<HttpResponse<any>> {
+    return this.http.post<any>(environment.apiUrl + `api/autor/${id}`, datos, {
       observe: 'response',
     });
     //devuelve un observable
