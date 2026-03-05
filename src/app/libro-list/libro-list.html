@@ -1,0 +1,34 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    {{ tituloListado() }}
+  </div>
+  @if (libros().length == 0) {
+    <div>
+      <h4>No hay libros</h4>
+    </div>
+  }
+  @if (libros().length > 0) {
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Titulo</th>
+            <th>Fecha de publicacion</th>
+            <th>Ventas</th>
+            <th>Autor</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (libro of libros(); track libro.id) {
+            <tr>
+              <td>{{ libro.titulo }}</td>
+              <td>{{ libro.fechaP }}</td>
+              <td>{{ libro.ventas }}</td>
+              <td>{{ libro.autor.nombre }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
